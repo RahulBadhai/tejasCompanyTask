@@ -5,7 +5,9 @@ export const dynamic = "force-dynamic"; // Ensures fresh data on every request
 async function getCryptoNews() {
   const res = await fetch(
     "https://cryptopanic.com/api/v1/posts/?public=true",
-    { cache: "no-store" } // Ensures fresh data is fetched every time
+    { cache: "no-store" , // Ensures fresh data is fetched every time,
+    headers: { "Cache-Control": "no-cache, no-store, must-revalidate" }
+    }
   );
 
   const data = await res.json();
